@@ -28,7 +28,7 @@ else if (pregunta == "No") {
 }
 
 while (pregunta != "No") {
-    let carrito = prompt("Selecciona tus donas:")
+    let carrito = prompt("Selecciona el tipo de dona:")
     let precio = 0
 
     if (carrito == "Chocolate" || carrito == "Crema" || carrito == "Con nueces" || carrito == "Chocolate blanco"){
@@ -54,8 +54,8 @@ while (pregunta != "No") {
         }
         let unidades = parseInt(prompt("Cuantas unidades?"))
 
-        //compras.push({donas, unidades, precio})
-        //console.log(compras)
+        compras.push({carrito, unidades, precio})
+        console.log(compras)
     }
 
     else{
@@ -66,6 +66,11 @@ while (pregunta != "No") {
 
     while(pregunta == "No"){
         alert("Gracias por elegirnos!")
+        compras.forEach((comprasFinal) => {
+            console.log(`compras: ${comprasFinal.carrito}, unidades: ${comprasFinal.unidades}, precio total: ${comprasFinal.unidades * comprasFinal.precio}`)
+            alert((`compras: ${comprasFinal.carrito}, unidades: ${comprasFinal.unidades}, precio total: ${comprasFinal.unidades * comprasFinal.precio}`))
+        })
+        
         break
     }
 }
