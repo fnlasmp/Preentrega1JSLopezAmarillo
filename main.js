@@ -8,44 +8,43 @@ const donas = [
 let compras = []
 let unidades = 0
 
-let pregunta = prompt("Bienvenido a Udonuts! estaria interesado en probar nuestras donas?")
+let pregunta = prompt("Bienvenido a Udonuts! estaria interesado en probar nuestras donas?").toLowerCase()
 
-//aqui se puede usar el or? (||)(por que cuando el usuario coloca si o no en minuscula no deja continuar)
-while(pregunta !="Si" && pregunta != "No"){
+while(pregunta !="si" && pregunta != "no"){
     alert("Por favor responder con Si o No, gracias")
-    pregunta = prompt("Estaria interesado en probar nuestras donas?")
+    pregunta = prompt("Estaria interesado en probar nuestras donas?").toLowerCase()
 }
 
-if(pregunta == "Si") {
+if(pregunta == "si") {
     alert("Estas son nuestras dondas disponibles")
     console.log(donas)
     let donasdisponibles = donas.map((donas) =>donas.nombre + " " + donas.precio + "$")
     alert(donasdisponibles.join(" - "))
 }
 
-else if (pregunta == "No") {
+else if (pregunta == "no") {
     alert("Gracias por visitarnos, si cambias de opinion, recarga la pagina!")
 }
 
-while (pregunta != "No") {
-    let carrito = prompt("Selecciona el tipo de dona:")
+while (pregunta != "no") {
+    let carrito = prompt("Selecciona el tipo de dona:").toLowerCase()
     let precio = 0
 
-    if (carrito == "Chocolate" || carrito == "Crema" || carrito == "Con nueces" || carrito == "Chocolate blanco"){
+    if (carrito == "chocolate" || carrito == "crema" || carrito == "con nueces" || carrito == "chocolate blanco"){
         switch(carrito) {
-            case "Chocolate":
+            case "chocolate":
                 precio = 100
                 break
 
-            case "Crema":
+            case "crema":
                 precio = 80
                 break
 
-            case "Con nueces":
+            case "con nueces":
                 precio = 120
                 break
 
-            case "Chocolate blanco":
+            case "chocolate blanco":
                 precio = 110
                 break
 
@@ -62,10 +61,13 @@ while (pregunta != "No") {
         alert("No es ninguna de las donas disponibles")
     }
 
-    pregunta = prompt("Quiere seguir seleccionando donas?")
+    pregunta = prompt("Quiere seguir seleccionando donas?").toLowerCase()
 
-    while(pregunta == "No"){
-        alert("Gracias por elegirnos!")
+    while(pregunta !="si" && pregunta != "no"){
+        alert("Por favor responder con Si o No, gracias")
+        pregunta = prompt("Quiere seguir seleccionando donas?").toLowerCase()}
+        
+        if (pregunta == "no"){
         compras.forEach((comprasFinal) => {
             console.log(`compras: ${comprasFinal.carrito}, unidades: ${comprasFinal.unidades}, precio total: ${comprasFinal.unidades * comprasFinal.precio}`)
             alert((`compras: ${comprasFinal.carrito}, unidades: ${comprasFinal.unidades}, precio total: ${comprasFinal.unidades * comprasFinal.precio}`))
@@ -74,3 +76,8 @@ while (pregunta != "No") {
         break
     }
 }
+
+const total = compras.reduce((acc, el) => acc + el.precio * el.unidades, 0)
+console.log(`El total a pagar por su compra es: ${total}`)
+alert(`El total a pagar por su compra es: ${total}$, muchas gracias!`)
+alert("Gracias por elegirnos, hasta pronto!")
